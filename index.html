@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOOK STUDIO · 穿搭摄影棚</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d1d1f'/%3E%3Ccircle cx='16' cy='13' r='6.5' fill='none' stroke='%232997ff' stroke-width='2.4'/%3E%3Crect x='13.5' y='19' width='5' height='8' rx='1.5' fill='%232997ff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="flash" id="flash" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#" onclick="return false">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30"><rect width="32" height="32" rx="8" fill="#1d1d1f"/><circle cx="16" cy="13" r="6.5" fill="none" stroke="#2997ff" stroke-width="2.4"/><rect x="13.5" y="19" width="5" height="8" rx="1.5" fill="#2997ff"/></svg>
+      </span>
+      <span class="brand-name"><em>Look&nbsp;Studio</em><b>穿搭摄影棚</b></span>
+    </a>
+    <nav class="steps" id="stepsNav" aria-label="工作流程">
+      <button class="step is-on" data-step="1"><i>01</i><b>穿搭方案</b><s>OUTFIT</s></button>
+      <span class="step-line" aria-hidden="true"></span>
+      <button class="step" data-step="2"><i>02</i><b>拍摄指导</b><s>SHOOTING</s></button>
+      <span class="step-line" aria-hidden="true"></span>
+      <button class="step" data-step="3"><i>03</i><b>精修成片</b><s>RETOUCH</s></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ═══════════ STAGE 1 ═══════════ -->
+  <section class="stage" id="stage1">
+    <div class="hero">
+      <p class="kicker" data-ani>STAGE 01 · OUTFIT PLANNING <span class="kicker-dot"></span> 衣杆已就位，棚灯已点亮</p>
+      <h1 class="display" data-ani>你的衣橱，<br><em>三种拍法。</em></h1>
+      <p class="lede" data-ani>把衣服拍给我，再说一句场合。我给你 <b>3 套</b>能直接照着穿的搭配——每一套都讲清楚“为什么这么搭”，不说黑话。</p>
+    </div>
+
+    <div class="s1-grid">
+      <div class="col">
+        <div class="panel-head">
+          <h2>衣杆 <s>WARDROBE</s></h2>
+          <p>上传衣物照片并贴标签，或直接手动添加</p>
+        </div>
+        <div class="dropzone" id="dropItems" tabindex="0" role="button" aria-label="上传衣物照片">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0l-4 4m4-4l4 4"/><path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+          <b>把衣服照片拖到这里，或点击上传</b>
+          <span>可多选 · 只有手机里的白底图也行</span>
+          <input type="file" id="fileItems" accept="image/*" multiple hidden>
+        </div>
+        <div class="item-list" id="itemList"></div>
+        <button class="btn ghost slim" id="btnAddManual">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          不传照片，手动写一件
+        </button>
+      </div>
+
+      <div class="col">
+        <div class="panel-head">
+          <h2>定制单 <s>BRIEF</s></h2>
+          <p>选择越全，方案越贴你；全跳过也能出通用版</p>
+        </div>
+        <div class="brief">
+          <div class="brief-row"><label>场合 <s>OCCASION</s></label><div class="chips" id="sceneChips"></div></div>
+          <div class="brief-row"><label>季节 <s>SEASON</s></label><div class="chips" id="seasonChips"></div></div>
+          <div class="brief-row"><label>身形 <s>BODY</s><em>可多选</em></label><div class="chips" id="bodyChips"></div></div>
+          <div class="brief-row"><label>肤色 <s>SKIN TONE</s></label><div class="chips" id="skinChips"></div></div>
+          <div class="brief-row"><label>风格偏好 <s>VIBE</s></label><div class="chips" id="styleChips"></div></div>
+          <div class="brief-row"><label>补充说明 <s>NOTES</s></label>
+            <textarea id="ctxNotes" rows="2" placeholder="比如：想要显高、不喜欢裙子、有双小白鞋想穿上……"></textarea>
+          </div>
+        </div>
+        <p class="hint" id="briefHint">身形和肤色没填也能出方案——先按通用版处理；补上之后，“扬长避短”的部分会明显更准。</p>
+        <div class="brief-actions">
+          <button class="btn primary" id="btnGenerate">生成 3 套穿搭方案</button>
+          <button class="btn ghost" id="btnDemo">先看示例效果</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plans-sec" id="plansSec" hidden>
+      <div class="sec-head">
+        <p class="kicker">YOUR LOOKBOOK · 本季提案</p>
+        <h2 class="display sm">三套方案，三种气质。</h2>
+        <p class="sec-sub">选一套最心动的，进棚拍它。方案里的“建议补”单品，衣柜里找同色系的平替就行。</p>
+      </div>
+      <div class="plan-grid" id="planGrid"></div>
+      <div class="plans-foot">
+        <button class="btn ghost" id="btnRegen">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 11-2.6-6.4M21 4v5h-5"/></svg>
+          都不太满意？换个思路重新生成
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ STAGE 2 ═══════════ -->
+  <section class="stage" id="stage2" hidden>
+    <div class="sec-head">
+      <p class="kicker">STAGE 02 · SHOOTING CALL SHEET</p>
+      <h2 class="display sm">拍摄通告单</h2>
+      <p class="recap" id="planRecap"></p>
+    </div>
+    <div class="call-sheet" id="guideWrap"></div>
+    <div class="stage-foot">
+      <button class="btn ghost" id="btnBackPlans">← 换一套方案</button>
+      <button class="btn primary" id="btnToStage3">拍好了，去暗房修图 →</button>
+    </div>
+  </section>
+
+  <!-- ═══════════ STAGE 3 ═══════════ -->
+  <section class="stage" id="stage3" hidden>
+    <div class="sec-head">
+      <p class="kicker">STAGE 03 · DARKROOM RETOUCH</p>
+      <h2 class="display sm">暗房冲印。</h2>
+      <p class="sec-sub">先给底片做“质检”，再按你的需求修图。一次冲印 3 版（轻度 / 中度 / 明显），五官和皮肤质感永远保留。</p>
+    </div>
+
+    <div class="s3-grid">
+      <div class="col">
+        <div class="panel-head"><h2>底片 <s>NEGATIVE</s></h2><p>上传实拍图，先过一遍质检</p></div>
+        <div class="dropzone" id="dropPhoto" tabindex="0" role="button" aria-label="上传实拍照片">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 012-2h2l1.5-2h7L17 6h2a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/><circle cx="12" cy="12.5" r="3.5"/></svg>
+          <b>把实拍照片拖到这里，或点击上传</b>
+          <span>照片只在你电脑里处理，不会上传到任何服务器</span>
+          <input type="file" id="filePhoto" accept="image/*" hidden>
+        </div>
+        <div class="photo-strip" id="photoStrip" hidden></div>
+        <div class="analysis" id="analysisWrap" hidden></div>
+      </div>
+
+      <div class="col">
+        <div class="panel-head"><h2>放大机控制台 <s>CONTROLS</s></h2><p>选风格、点需求，或直接拖滑杆微调</p></div>
+        <div class="console">
+          <div class="ctrl-row"><label>风格调色 <s>PRESET</s></label><div class="chips" id="presetRow"></div></div>
+          <div class="ctrl-row"><label>修图需求 <s>KEYWORDS</s><em>可多选</em></label><div class="chips" id="kwRow"></div></div>
+          <div class="ctrl-row"><label>精细微调 <s>FINE TUNE</s></label>
+            <div class="sliders" id="sliderBox"></div>
+          </div>
+          <p class="hint" id="retouchNote">一次冲印 3 版：<b>轻度</b>（接近原图）· <b>中度</b>（推荐）· <b>明显</b>（效果拉满）。修饰上限是锁死的——不会给你修成“网红脸”。</p>
+          <button class="btn primary wide" id="btnRetouch" disabled>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/></svg>
+            开始冲印 · 生成 3 版成片
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-sec" id="resultsWrap" hidden>
+      <div class="sec-head">
+        <p class="kicker">CONTACT SHEET · 接触印样</p>
+        <h2 class="display sm">同底片，三种浓度。</h2>
+      </div>
+      <div class="result-grid" id="resultGrid"></div>
+      <div class="fb-sec">
+        <p class="fb-title">哪里不满意？点一下，我针对性改：</p>
+        <div class="chips" id="fbRow"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p><b>LOOK STUDIO · 穿搭摄影棚</b> — 所有照片与信息只保存在本机浏览器里，刷新页面不丢（配置自动记忆），不上传、不联网。</p>
+  <p>修图原则：只优化，不失真。五官、皮肤纹理、身形比例的改动都有上限。</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/knowledge.js"></script>
+<script src="js/retouch.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

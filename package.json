@@ -1,0 +1,17 @@
+{
+  "name": "look-studio",
+  "productName": "Look Studio",
+  "version": "1.0.0",
+  "description": "AI 穿搭摄影棚 · 桌面App：穿搭方案 → 拍摄指导 → 本地修图，照片全程本地处理",
+  "main": "main.js",
+  "author": "724-star",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-packager . \"Look Studio\" --platform=win32 --arch=x64 --icon=icon.ico --out=dist --overwrite --asar"
+  },
+  "devDependencies": {
+    "electron": "^44.0.0",
+    "@electron/packager": "^20.0.0"
+  }
+}
