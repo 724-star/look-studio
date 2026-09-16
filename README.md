@@ -37,10 +37,16 @@
 
 ## 谁能用 / 怎么用
 
-去 [Releases](../../releases) 下载 `Look Studio-win32-x64.zip`，解压后双击 **Look Studio.exe** 即可。
+**电脑（Windows）**：去 [Releases](../../releases) 下载 `LookStudio-win32-x64.zip`，解压后双击 **Look Studio.exe** 即可。
 
 - 无需安装、无需管理员权限、不写注册表
 - 所有照片与配置只保存在本机，配置自动记忆（localStorage）
+
+**手机（iPhone / 安卓）**：浏览器打开 **https://724-star.github.io/look-studio/**
+
+1. iPhone（Safari）：分享 → 添加到主屏幕
+2. 安卓（Chrome）：菜单 → 添加到主屏幕 / 安装应用
+3. 桌面出现独立图标，全屏运行；首次打开后**离线也能用**（PWA）
 
 ## 从源码运行
 
